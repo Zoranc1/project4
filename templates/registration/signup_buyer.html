@@ -1,0 +1,22 @@
+{% extends 'base.html' %} {% load bootstrap_tags %} {% block content %}
+<div class="container-fluid">
+  <div class="row">
+
+    <div class="col-sm-8 col-sm-offset-2 ">
+      <div class="thumbnail">
+
+        <div class="caption">
+          <h2>Sign up as buyer</h2>
+
+
+          <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %} {{ user_form | as_bootstrap}} {{ profile_form| as_bootstrap}}
+            <input class="btn btn-primary" type="submit" value="Create your account" />
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock %}                     

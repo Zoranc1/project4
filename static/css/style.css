@@ -1,0 +1,38 @@
+body {
+    font-family: Arial;
+    padding-top: 100px;
+}
+
+footer {
+    margin-top: 40px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    border-top: 1px solid #ededed;
+    color: #A9A9A9;
+}
+
+.navbar-default{
+    background-color:#3e3f3a ;
+}
+.navbar-nav>li>a {
+    color: red;
+}
+.navbar-nav>li>a:hover{
+    color:red ;
+}
+.icon-bar {
+    background-color: #fff;
+}
+
+.accountform {
+    padding-top: 20px;
+}
+.img{
+    width: 150px;
+}
+.img_detial{
+    width: 280px;
+}
+.img:hover{
+    
+}
