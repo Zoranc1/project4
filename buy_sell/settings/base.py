@@ -26,7 +26,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['project4-zoranc.c9users.io']
+ALLOWED_HOSTS = ['project4-zoranc.c9users.io','lent-project4.herokuapp.com']
 
 
 # Application definition
