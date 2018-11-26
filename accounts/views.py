@@ -1,20 +1,21 @@
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect, HttpResponse
-from .forms import SignUpForm, ProfileForm
+from .forms import SignUpForm, BuyerProfileForm, SellerProfileForm
 
 
 
 def show_profile(request):
     return render(request,'profile.html')
 
+
 def signup_buyer(request):
     if request.method == 'POST':
         user_form = SignUpForm(request.POST)
-        profile_form = ProfileForm(request.POST, request.FILES)
+        profile_form = BuyerProfileForm(request.POST, request.FILES)
         
         if user_form.is_valid() and profile_form.is_valid():
             user = user_form.save()
-            profile = profile_form.save(commit=False)
+            profile = BuyerProfileForm.save(commit=False)
             profile.user = user
             profile.save()
             
@@ -27,17 +28,18 @@ def signup_buyer(request):
             return HttpResponse('Something went wrong..... ')
     else:
         form = SignUpForm()
-        profile_form =ProfileForm()
+        profile_form =BuyerProfileForm()
         return render(request, 'registration/signup_buyer.html', {'user_form': form, 'profile_form':profile_form})
+
         
 def signup_seller(request):
     if request.method == 'POST':
         user_form = SignUpForm(request.POST)
-        profile_form = ProfileForm(request.POST, request.FILES)
+        profile_form = SellerProfileForm(request.POST, request.FILES)
         
         if user_form.is_valid() and profile_form.is_valid():
             user = user_form.save()
-            profile = profile_form.save(commit=False)
+            profile = SellerProfileForm.save(commit=False)
             profile.user = user
             profile.save()
             
@@ -50,5 +52,5 @@ def signup_seller(request):
             return HttpResponse('Something went wrong..... ')
     else:
         form = SignUpForm()
-        profile_form =ProfileForm()
+        profile_form =SellerProfileForm()
         return render(request, 'registration/signup_seller.html', {'user_form': form, 'profile_form':profile_form})    

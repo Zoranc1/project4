@@ -1,5 +1,5 @@
 from django.urls import path, include
-from .views import signup_buyer, show_profile,signup_seller
+from .views import signup_buyer, show_profile,signup_seller,signup_buyer
 
 
 urlpatterns = [
