@@ -1,0 +1,23 @@
+{% extends 'base.html' %} {% load bootstrap_tags %} {% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-6 offset-sm-3 ">
+
+            <div class="thumbnail">
+
+                <div class="caption">
+                    <h2>Ad Details !!!!</h2>
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %} {{ form | as_bootstrap}}
+                        <input type="submit" value="Submit" />
+                    </form>
+                    <a href="{% url 'home' %}">Back</a>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

@@ -3,11 +3,6 @@ from django.shortcuts import render, redirect, HttpResponse
 from .forms import SignUpForm, BuyerProfileForm, SellerProfileForm
 
 
-
-def show_profile(request):
-    return render(request,'profile.html')
-
-
 def signup_buyer(request):
     if request.method == 'POST':
         user_form = SignUpForm(request.POST)
@@ -15,7 +10,7 @@ def signup_buyer(request):
         
         if user_form.is_valid() and profile_form.is_valid():
             user = user_form.save()
-            profile = BuyerProfileForm.save(commit=False)
+            profile = profile_form.save(commit=False)
             profile.user = user
             profile.save()
             
@@ -23,7 +18,7 @@ def signup_buyer(request):
             raw_password = user_form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
-            return redirect('profile')
+            return redirect('show_all_adds')
         else:
             return HttpResponse('Something went wrong..... ')
     else:
@@ -39,7 +34,7 @@ def signup_seller(request):
         
         if user_form.is_valid() and profile_form.is_valid():
             user = user_form.save()
-            profile = SellerProfileForm.save(commit=False)
+            profile = profile_form.save(commit=False)
             profile.user = user
             profile.save()
             
@@ -47,7 +42,7 @@ def signup_seller(request):
             raw_password = user_form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
-            return redirect('profile')
+            return redirect('show_all_adds')
         else:
             return HttpResponse('Something went wrong..... ')
     else:
