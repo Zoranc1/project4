@@ -25,4 +25,4 @@ class SellerProfileForm(forms.ModelForm):
     
     class Meta:
         model = SellerProfile
-        fields = ('image','vat_number')        
+        fields = ('image','vat_number','bank_name','iban','bic')        

@@ -6,9 +6,12 @@ from django.utils import timezone
 from django.contrib.auth.decorators import permission_required
 
 # Create your views here.
-def show_all_adds(request):
-    adds= Ad.objects.filter(published_date__lte=timezone.now())
-    return render(request,'profile.html',{'adds':adds})
+def home_page(request):
+    return render(request,'home.html')
+    
+def show_all_ads(request):
+    ads= Ad.objects.filter(published_date__lte=timezone.now())
+    return render(request,'ads/all_ads.html',{'ads':ads})
 
 
 def is_in_group(user, group_name):
@@ -19,25 +22,24 @@ def in_authors(request,id):
 
     return render(request, "/base.html",{'is_authors':inauthors})
     
-def user_can_edit_add(request, post):
-    wrote_the_add = post.author == request.user
-    is_editor = is_in_group(request.user, 'editors')
+def user_can_edit_add(request, ad):
+    wrote_the_add = ad.seller == request.user
     superuser = request.user.is_superuser
-    return wrote_the_add or superuser or is_editor
+    return wrote_the_add or superuser 
 
 
 def get_index(request):
     posts = Ad.objects.filter(published_date__lte=timezone.now())
-    return render(request, "adds/displey_ad.html", {'posts': posts})
+    return render(request, "ads/displey_ad.html", {'posts': posts})
     
 def read_ad(request,id):
-    post = get_object_or_404(Ad, pk=id)
-    post.views +=1
-    post.save()
+    ad = get_object_or_404(Ad, pk=id)
+    ad.views +=1
+    ad.save()
     
-    can_edit = user_can_edit_add(request, post)
+    can_edit = user_can_edit_add(request, ad)
 
-    return render(request, "adds/dispey_ad.html",{'post':post,'can_edit':can_edit})
+    return render(request, "ads/dispey_ad.html",{'ad':ad,'can_edit':can_edit})
     
 def edit_ad(request, id):
     post = get_object_or_404(Ad, pk=id)
@@ -47,9 +49,9 @@ def edit_ad(request, id):
         return redirect(read_ad, id)
     else:        
         form=PostForm(instance=post)
-        return render(request, "adds/post_ad.html", {'form': form }) 
+        return render(request, "ads/post_ad.html", {'form': form }) 
 
-@login_required
+@permission_required('adds.add_post')
 def write_ad(request):
     if request.method == "POST":
         form = AdForm(request.POST, request.FILES)
@@ -59,15 +61,15 @@ def write_ad(request):
         return redirect(read_ad, post.id)
     else:        
         form=AdForm()
-        return render(request, "adds/adding_ad.html", {'form': form }) 
+        return render(request, "ads/adding_ad.html", {'form': form }) 
         
 
 
     
 @permission_required('adds.can_publish')
 def get_unpublished_ad(request):
-    adds = Ad.objects.filter(published_date__isnull=True)
-    return render(request, "adds/unpubliched.html", {'adds': adds})    
+    ads = Ad.objects.filter(published_date__isnull=True)
+    return render(request, "ads/unpubliched.html", {'ads': ads})    
 
 
 

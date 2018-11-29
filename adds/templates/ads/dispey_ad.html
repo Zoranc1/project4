@@ -1,0 +1,40 @@
+{% extends 'base.html' %} 
+{% load static from staticfiles %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-2 col-sm-3 text-center">
+        <a class="story-img" href="">
+                    <img  class="img-circle" src="{{MEDIA_URL}}{{ad.seller.seller.image}}" >
+                </a>
+        <p><span class="boldtext">Author:</span> {{ ad.seller.username }}</p>
+    </div>
+    <div class="col-md-10 col-sm-9">
+        <h3>{{ ad.title }} <span class='pull-right' >€{{ad.price}}</span></h3>
+        {% if ad.image %}
+        <img class='product_image'  src="{{MEDIA_URL}}{{ ad.image}}">
+        {% endif %}
+        <div class="row">
+            <div class="col-xs-9">
+                <p>{{ ad.content|truncatewords:30 }}</p>
+                
+                
+                {% for i in ad.images.all %}
+                <img class='img' src="{{MEDIA_URL}}{{ i.image}}">
+                {% endfor %}
+                
+                <p><span class="boldtext">Published on:</span> {{ ad.published_date }} </p>
+                <p><span class="boldtext">Views:</span> {{ ad.views}}
+                <span class="boldtext">Category:</span> history
+                <form method="POST" action="{% url 'adding_to_cart' %}">
+                                    {% csrf_token %}
+                                    <input type="number" name="quantity" value="1"/>
+                                    <input type="hidden" name="ad" value="{{ad.id}}"/>
+                                    <input class="btn btn-primary pull-right" type="submit" value="Add to cart"/></p>
+                                </form>
+            </div>
+        </div>
+    </div>
+    <hr>
+</div>
+{% endblock %}

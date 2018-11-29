@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static from staticfiles %}
+{% load bootstrap_tags %}
+{% block content %}
+
+<h2>Seller orders</h2>
+{%for line_item in order_line_items%}
+
+
+<p><strong>{{line_item.order.full_name}}</strong> orderd <strong>{{line_item.quantity}}</strong> pieces of<strong> {{line_item.ad.title}}</strong>,with SKU code :<strong>{{line_item.order.ad.sku}}</strong></h2>
+
+<p>Shiping address is:</p>
+<p>{{line_item.order.full_name}}</p>
+<p>{{line_item.order.street_address_1}}</p>
+<p>{{line_item.order.street_address_2}}</p>
+<p>{{line_item.order.town_or_city}}</p>
+<p>{{line_item.order.postcode}}</p>
+<p>{{line_item.order.country}}</p>
+<h4>Contact phone number is {{line_item.order.phone_number}}</h4>
+<hr>
+{% endfor %}
+
+
+{% endblock %}

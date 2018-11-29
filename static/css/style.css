@@ -1,6 +1,12 @@
-body {
+
+body{
     font-family: Arial;
     padding-top: 100px;
+    background-image: url('/static/images/sunset.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 500px;
+    
 }
 
 footer {
@@ -8,31 +14,65 @@ footer {
     padding-top: 40px;
     padding-bottom: 40px;
     border-top: 1px solid #ededed;
-    color: #A9A9A9;
+    color: #35393d;
+    background:#cdd2d8;
+}
+.all_ads{
+    float: left;
+    padding: 20px 15px;
+    font-size: 18px;
+    line-height: 20px;
+    height: 60px;
+    color:white;
+}
+.row{
+    margin-left:20px;
+    padding-left:20px;
+}
+.base{
+    margin: 0;
+    padding: 0;
+    
+    padding-bottom: 40px;
+    
+    
+    
 }
 
 .navbar-default{
-    background-color:#3e3f3a ;
+    background-color:#cdd2d8;
+    color:red;
 }
-.navbar-nav>li>a {
-    color: red;
-}
-.navbar-nav>li>a:hover{
-    color:red ;
+
+.navbar-default:hover{
+    color:blue ;
 }
 .icon-bar {
     background-color: #fff;
 }
-
+.product_image{
+    width: 100px;
+}
 .accountform {
     padding-top: 20px;
 }
+.ad_row{
+    height: 150px;
+}
 .img{
     width: 150px;
+}
+.img-circle{
+    width:100px;
 }
 .img_detial{
     width: 280px;
 }
 .img:hover{
     
+}
+
+
+.navbar-default .navbar-nav>li>a {
+    color: orange;
 }

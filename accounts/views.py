@@ -1,5 +1,7 @@
 from django.contrib.auth import login, authenticate
+from django.contrib.auth.models import Group
 from django.shortcuts import render, redirect, HttpResponse
+
 from .forms import SignUpForm, BuyerProfileForm, SellerProfileForm
 
 
@@ -18,7 +20,7 @@ def signup_buyer(request):
             raw_password = user_form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
-            return redirect('show_all_adds')
+            return redirect('show_all_ads')
         else:
             return HttpResponse('Something went wrong..... ')
     else:
@@ -42,7 +44,9 @@ def signup_seller(request):
             raw_password = user_form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
-            return redirect('show_all_adds')
+            seller_group =Group.objects.get(name='sellers')
+            seller_group.user_set.add(user)
+            return redirect('show_all_ads')
         else:
             return HttpResponse('Something went wrong..... ')
     else:

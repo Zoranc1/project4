@@ -16,21 +16,22 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from accounts import urls as accounts_urls
-from adds import urls as adds_urls
-from adds.views import show_all_adds
+from adds import urls as ads_urls
+from adds.views import home_page
 from django.conf import settings
 from django.views.static import serve
+from cart import urls as cart_urls
+from checkout import urls as checkout_urls
 
-
-from django.conf import settings
-from django.views.static import serve
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', show_all_adds, name='home'),
+    path('', home_page, name='home'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/', include(accounts_urls)),
-    path('adds/', include(adds_urls)),
+    path('ads/', include(ads_urls)),
+    path('cart/', include(cart_urls)),
+    path('checkout/', include(checkout_urls)),
     path('media/<path:path>', serve, {'document_root': settings.MEDIA_ROOT}),
 ]
     
