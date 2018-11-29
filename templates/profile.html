@@ -1,0 +1,27 @@
+{% extends 'base.html' %} 
+{% load static from staticfiles %}
+
+{% block content %}
+    
+    <div class="col-sm-6 offset-sm-1 text-center">
+        <a class="story-img" href="">
+                    <img  class="img-circle" src="{{MEDIA_URL}}{{seller.seller.image}}" >
+                </a>
+        <p><span class="boldtext">Seller:</span> {{ seller.username }}</p>
+        <p>{{seller.about}}</p>
+        <p>Order thru list of Our Products or contact us on {{seller.email}}</p>
+    </div>
+    <div class="col-sm-4 ">
+        
+            {% for ad in ads%}
+            <div class="row">
+                <img class='product_image'  src="{{MEDIA_URL}}{{ ad.image}}">
+            </div>
+            <h3>{{ ad.title }} <span class='pull-right' >€{{ad.price}}</span></h3>
+            <p><span class="boldtext">Views:</span> {{ ad.views}}
+                <span class="boldtext">Category:</span> {{ad.category}}</p>
+                <p><a href="{% url 'read_ad' ad.id %}" class="btn btn-default pull-right">Read more</a>
+            {% endfor%}
+            
+        </div>
+{% endblock %}

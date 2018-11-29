@@ -42,7 +42,9 @@ INSTALLED_APPS = [
     'django_forms_bootstrap',
     'adds',
     'cart',
-    'checkout'
+    'checkout',
+    'reviews',
+    'storages'
 ]
 
 MIDDLEWARE = [

@@ -12,26 +12,22 @@ def home_page(request):
 def show_all_ads(request):
     ads= Ad.objects.filter(published_date__lte=timezone.now())
     return render(request,'ads/all_ads.html',{'ads':ads})
+    
+def ad_category(request,category):
+    cat = Ad.objects.filter(category=category)
+    
+    return render(request,'ads/category.html',{'category':cat})
 
 
 def is_in_group(user, group_name):
     return user.groups.filter(name=group_name).exists()
 
-def in_authors(request,id):
-    inauthors= is_in_group(request.user, 'authors')
-
-    return render(request, "/base.html",{'is_authors':inauthors})
     
 def user_can_edit_add(request, ad):
     wrote_the_add = ad.seller == request.user
     superuser = request.user.is_superuser
     return wrote_the_add or superuser 
 
-
-def get_index(request):
-    posts = Ad.objects.filter(published_date__lte=timezone.now())
-    return render(request, "ads/displey_ad.html", {'posts': posts})
-    
 def read_ad(request,id):
     ad = get_object_or_404(Ad, pk=id)
     ad.views +=1

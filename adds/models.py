@@ -4,6 +4,11 @@ from django.contrib.auth.models import User
 
 
 # Create your models here.
+TYPE_CHOICES = [
+    ('Oil','Oil'),
+    ('Wine','Wine'),
+    ('Cheese','Cheese'),
+    ]
 class Ad(models.Model):
     """
     A single Blog post
@@ -21,6 +26,7 @@ class Ad(models.Model):
     views = models.IntegerField(default=0)
     image = models.ImageField(upload_to='images', null=True, blank=True)
     price = models.DecimalField(max_digits=6, decimal_places=2,blank=True, default='0.00')
+    category =  models.CharField(max_length=10, choices=TYPE_CHOICES) 
     
     def __str__(self):
         return self.title
