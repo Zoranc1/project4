@@ -2,7 +2,7 @@
 body{
     font-family: Arial;
     padding-top: 100px;
-    background-image: url('/static/images/sunset.jpg');
+    background-image: url('/static/images/korcula.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     height: 500px;
@@ -25,6 +25,13 @@ footer {
     height: 60px;
     color:white;
 }
+.category_image{
+    height:100%;
+    width:100vh;
+}
+.container-fluid{
+    width:100%;
+}
 .row{
     margin-left:20px;
     padding-left:20px;
@@ -34,11 +41,11 @@ footer {
     padding: 0;
     
     padding-bottom: 40px;
-    
-    
-    
 }
-
+.aside{
+    margin: 20px;
+    padding:20px;
+}
 .navbar-default{
     background-color:#cdd2d8;
     color:red;
@@ -75,4 +82,9 @@ footer {
 
 .navbar-default .navbar-nav>li>a {
     color: orange;
+}
+@media (min-width: 992px){
+  .container-fluid{
+    max-width:100%;
+  }
 }

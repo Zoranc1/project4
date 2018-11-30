@@ -1,12 +1,12 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import review
+from .models import Review
 
 
 
-class reviewForm(forms.ModelForm):
+class ReviewForm(forms.ModelForm):
     class Meta:
-        model = review
-        fields = ('title', 'content', )
+        model = Review
+        fields = ( 'content', )
         

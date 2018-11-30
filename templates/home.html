@@ -1,70 +1,64 @@
 {% extends 'base.html' %} {% load bootstrap_tags %} {% load staticfiles%} {% block content %}
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-8 ">
+<div class="container text-center">
+    <div class="row ">
+        <div class="col-sm-8 text-center ">
 
             <div class="thumbnail">
 
                 <div class="caption">
                     <h2>Home</h2>
-                    
-                    <div class="row">
-                        <div class="col-sm-9  text-center">
-                            <a class="story-img" href="#">
-                    <img class="img-circle" src="{{MEDIA_URL}}{{ad.seller.seller.image}}" >
-                </a>
-                            <p><span class="boldtext">Author:</span> {{ ad.seller.username }}</p>
-                        </div>
-                        <div class="col-sm-3 text-center">
-                            {% if perms.adds.add_post %}
-                            
-            <form action="{% url 'write_ad' %}">
-                <input class="btn btn-success pull-left" type="submit" value="Place ad" />
-            </form>
-            {% endif %}
-            <form action="{% url 'all_ads' %}">
-                <input class="btn btn-primary pull-right" type="submit" value="SE ALL ADS" />
-            </form>
-                            
-                            
-                            <div class="row">
-                            <a href="#">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-4 text-center">
+
+            <div class="thumbnail">
+
+                
+                    <div class="row aside">
+
+                    {% if perms.adds.add_post %}
+
+                    <form action="{% url 'write_ad' %}">
+                        <input class="btn btn-success pull-left" type="submit" value="Place ad" />
+                    </form>
+                    {% endif %}
+                    <form action="{% url 'all_ads' %}">
+                        <input class="btn btn-primary pull-right" type="submit" value="SE ALL ADS" />
+                    </form>
+                    </div>
+
+
+                    <div class="row aside">
+                        <a href="{% url 'ads_by_category' 'Cheese' %}">
                             <img class='category_image' src="{% static 'images/cheese_home.jpg' %}"> 
                             
                                 
                                     
                                     <p><span class="boldtext">Category:</span> Cheese</p></a>
-                            </div>
-                            <div class="row">
-                            <a href="#">
+                    </div>
+                    <div class="row">
+                        <a href="{% url 'ads_by_category' 'Wine' %}">
                             <img class='category_image' src="{% static 'images/wine_home.jpg' %}"> 
                             
                                 
                                     
                                     <p><span class="boldtext">Category:</span> Wine</p></a>
-                            </div>
-                            <div class="row">
-                            <a href="#">
+                    </div>
+                    <div class="row">
+                        <a href="{% url 'ads_by_category' 'Oil' %}">
                             <img class='category_image' src="{% static 'images/home_oil.jpg' %}"> 
                             
                                 
                                     
                                     <p><span class="boldtext">Category:</span> Olive Oil</p></a>
-                            </div>
-
-
-                        </div>
                     </div>
-                    <hr>
-                   
 
 
-                </div>
+                
             </div>
         </div>
-
-        
-
     </div>
 </div>
 {% endblock %}

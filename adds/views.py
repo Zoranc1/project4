@@ -1,12 +1,16 @@
 from django.shortcuts import render, get_object_or_404,redirect
 from .models import Ad
 from .forms import AdForm
+from reviews.views import make_review
+from reviews.forms import ReviewForm
+from reviews.models import Review
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from django.contrib.auth.decorators import permission_required
 
 # Create your views here.
 def home_page(request):
+    
     return render(request,'home.html')
     
 def show_all_ads(request):
@@ -14,9 +18,9 @@ def show_all_ads(request):
     return render(request,'ads/all_ads.html',{'ads':ads})
     
 def ad_category(request,category):
-    cat = Ad.objects.filter(category=category)
+    ads = Ad.objects.filter(category=category)
     
-    return render(request,'ads/category.html',{'category':cat})
+    return render(request,'ads/category.html',{'category':ads})
 
 
 def is_in_group(user, group_name):

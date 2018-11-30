@@ -33,7 +33,13 @@
                                     <input class="btn btn-primary pull-right" type="submit" value="Add to cart"/></p>
                                 </form>
             </div>
+            {{form}}
         </div>
+        {% for review in ad.reviews.all %}
+            {{review.image}}
+            {{review.author}}
+            {{review.content}}
+        {% endfor%}
     </div>
     <hr>
 </div>
