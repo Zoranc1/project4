@@ -40,13 +40,13 @@
                 
                 <ul class="nav navbar-nav navbar-right">
                     {% if user.is_authenticated %}
-                     {% if perms.adds.add_post %}
+                     {% if perms.products.add_product %}
                     
                         <li><a href="{% url 'my_orders'%}"><i class="fa fa-user"></i> My orders</a></li>
                       {% endif %}  
-                    {% if perms.adds.can_publish %}
+                    {% if perms.products.can_publish %}
                     
-                        <li><a href="{% url 'get_unpublished_ad'%}"><i class="fa fa-user"></i> Unpubliched Adds</a></li>
+                        <li><a href="{% url 'get_unpublished_products' %}"><i class="fa fa-user"></i> Unpubliched Adds</a></li>
                         {% endif %}
                         <li><a href="{% url 'profile' user.id %}"><i class="fa fa-user"></i> {{user.username}}</a></li>
                         <li><a href="{% url 'logout' %}"><i class="fa fa-sign-out"></i> Log Out</a></li>

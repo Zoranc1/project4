@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404,redirect, HttpResponse
-from adds.models import Ad
+from products.models import Product
 from .forms import MakePaymentForm, OrderForm
 from .models import OrderLineItem
 from django.conf import settings
@@ -12,18 +12,18 @@ def get_cart_item_and_total(cart):
     cartTotal=0
     cart_items = []
     
-    for ad_id, quantity in cart.items():
-        ad = get_object_or_404(Ad, pk=ad_id)
-        item_total=ad.price * quantity
+    for product_id, quantity in cart.items():
+        product = get_object_or_404(Product, pk=product_id)
+        item_total=product.price * quantity
         
     
         cart_items.append({
-            'id': ad.id,
-            'title': ad.title,
-            'description': ad.content,
-            'image': ad.image,
-            'sku': ad.sku,
-            'price': ad.price,
+            'id': product.id,
+            'title': product.title,
+            'description': product.content,
+            'image': product.image,
+            'sku': product.sku,
+            'price': product.price,
             'quantity': quantity,
             'total': item_total
         })   
@@ -41,9 +41,6 @@ def checkout_show(request):
     cart_items_and_total = get_cart_item_and_total(cart)
     context = {'payment_form':form, 'order_form':order_form,'publishable': settings.STRIPE_PUBLISHABLE_KEY,}
     context.update(cart_items_and_total)
-    
-    
-    
 
     return render(request, "checkout/checkout.html", context )
 
@@ -60,9 +57,9 @@ def submit_payment(request):
         #Save the Order to Database
         order = order_form.save()
         cart = request.session.get('cart',{}) 
-        for ad_id, quantity in cart.items():
+        for product_id, quantity in cart.items():
             line_item = OrderLineItem()
-            line_item.ad_id = ad_id
+            line_item.product_id = product_id
             line_item.quantity = quantity
             line_item.order = order
             line_item.save()
@@ -97,7 +94,7 @@ def submit_payment(request):
         
         return redirect('/')
 def my_orders(request):
-    order_line_items = OrderLineItem.objects.filter(ad_id__seller=request.user)
+    order_line_items = OrderLineItem.objects.filter(product_id__seller=request.user).order_by('order__date')
     
     return render (request, 'checkout/my_orders.html',{'order_line_items':order_line_items})
 

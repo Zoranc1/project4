@@ -1,7 +1,7 @@
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import Group,User
 from django.shortcuts import render, redirect, HttpResponse,get_object_or_404
-from adds.models import Ad
+from products.models import Product
 from .forms import SignUpForm, BuyerProfileForm, SellerProfileForm
 
 
@@ -58,5 +58,5 @@ def signup_seller(request):
         
 def profile(request,id):
     seller = get_object_or_404(User, pk=id)
-    ads = Ad.objects.filter(seller_id=id)
-    return render(request, "profile.html", {'seller': seller,'ads':ads})        
+    products = Product.objects.filter(seller_id=id)
+    return render(request, "profile.html", {'seller': seller,'products':products})        

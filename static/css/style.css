@@ -172,6 +172,10 @@ th ,td {
     border:2px solid black; 
     min-height: 500px
 }
+.shipping_details{
+    margin-left: 16px;
+    font-weight: 600;
+}
 .hr_all_ads{
     color:black;
     margin-bottom: 10px;

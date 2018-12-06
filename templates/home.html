@@ -8,8 +8,10 @@
                 <div class="caption">
                     <h2>Korcula</h2>
                     <p>Korčula make it the second most populous Adriatic island after Krk and the most populous Croatian island not connected to the mainland by a bridge. Be twin population of 15,522 on Our island are many small producers of local product like excellent wine, Extra virgin olive oil, rewording cheese and many more.</p> <p>This is their stoy.</p>
+                    
                 </div>
             </div>
+            
         </div>
 
         <div class="col-sm-3 text-center">
@@ -19,20 +21,20 @@
                 
                     <div class="row aside">
 
-                    {% if perms.adds.add_post %}
+                    {% if perms.products.add_product %}
 
-                    <form action="{% url 'write_ad' %}">
-                        <input class="btn btn-success pull-left home_place_ad" type="submit" value="Place ad" />
+                    <form action="{% url 'write_product' %}">
+                        <input class="btn btn-success pull-left home_place_ad" type="submit" value="List Product" />
                     </form>
                     {% endif %}
-                    <form action="{% url 'all_ads' %}">
-                        <input class="btn btn-primary pull-right home_se_ads" type="submit" value="SE ALL ADS" />
+                    <form action="{% url 'all_products' %}">
+                        <input class="btn btn-primary pull-right home_se_ads" type="submit" value="SE ALL PRODUCTS" />
                     </form>
                     </div>
 
 
                     <div class="row aside">
-                        <a href="{% url 'ads_by_category' 'Cheese' %}">
+                        <a href="{% url 'products_by_category' 'Cheese' %}">
                             <img class='category_image' src="{% static 'images/cheese_home.jpg' %}"> 
                             
                                 
@@ -40,7 +42,7 @@
                                     <p><span class="boldtext">Category:</span> Cheese</p></a>
                     </div>
                     <div class="row">
-                        <a href="{% url 'ads_by_category' 'Wine' %}">
+                        <a href="{% url 'products_by_category' 'Wine' %}">
                             <img class='category_image' src="{% static 'images/wine_home.jpg' %}"> 
                             
                                 
@@ -48,7 +50,7 @@
                                     <p><span class="boldtext">Category:</span> Wine</p></a>
                     </div>
                     <div class="row">
-                        <a href="{% url 'ads_by_category' 'Oil' %}">
+                        <a href="{% url 'products_by_category' 'Oil' %}">
                             <img class='category_image' src="{% static 'images/home_oil.jpg' %}"> 
                             
                                 

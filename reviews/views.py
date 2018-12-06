@@ -16,5 +16,5 @@ def make_review(request,id):
         savedReview.save()
         review_blog = savedReview
         
-        return redirect('read_ad',id=id,)
+        return redirect('view_product',id=id,)
     

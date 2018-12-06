@@ -9,13 +9,13 @@ TYPE_CHOICES = [
     ('Wine','Wine'),
     ('Cheese','Cheese'),
     ]
-class Ad(models.Model):
+class Product(models.Model):
     """
-    A single Ad post
+    A product for sale by a Seller user
     """
     class Meta:
         permissions = (
-            ('can_publish', 'Can publish a ad post'),
+            ('can_publish', 'Can publish an ad for a product'),
         )
     title = models.CharField(max_length=200)
     content = models.TextField()
@@ -30,9 +30,10 @@ class Ad(models.Model):
     
     def __str__(self):
         return self.title
+
         
-class AdImage(models.Model):
+class ProductImage(models.Model):
     image = models.ImageField(upload_to='images', null=True, blank=True)
-    ad = models.ForeignKey(Ad, related_name='images', null=False, on_delete=models.CASCADE) 
+    product = models.ForeignKey(Product, related_name='images', null=False, on_delete=models.CASCADE) 
     
         

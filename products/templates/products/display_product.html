@@ -5,41 +5,41 @@
         <div class="thumbnail">
             <div class="row">
             <div class="col-2 col-sm-3 text-center">
-                <a class="story-img" href="{% url 'profile' ad.seller.id %}">
-                    <img  class="img-circle" src="{{MEDIA_URL}}{{ad.seller.seller.image}}" >
+                <a class="story-img" href="{% url 'profile' product.seller.id %}">
+                    <img  class="img-circle" src="{{MEDIA_URL}}{{product.seller.seller.image}}" >
                 
-        <p><span class="boldtext">Author:</span> {{ ad.seller.username }}</p></a>
+        <p><span class="boldtext">Author:</span> {{ product.seller.username }}</p></a>
             </div>
             <div class="col-10 col-sm-5">
-                <h3>{{ ad.title }} <span class='pull-right'>€{{ad.price}}</span></h3>
+                <h3>{{ ad.title }} <span class='pull-right'>€{{product.price}}</span></h3>
                
                 <div class="row">
                     <div class="col-xs-9">
-                        <p>{{ ad.content}}</p>
+                        <p>{{ product.content}}</p>
                         
-                        {% for i in ad.images.all %}
+                        {% for i in product.images.all %}
                         <img class='img' src="{{MEDIA_URL}}{{ i.image}}"> {% endfor %}
 
                     
-                        <p><span class="boldtext">Views:</span> {{ ad.views}}
-                            <span class="boldtext">Category:</span> {{ad.category}}
+                        <p><span class="boldtext">Views:</span> {{ product.views}}
+                            <span class="boldtext">Category:</span> {{product.category}}
                             <form method="POST" action="{% url 'adding_to_cart' %}">
                                 {% csrf_token %}
                                 <input type="number" name="quantity" value="1" />
-                                <input type="hidden" name="ad" value="{{ad.id}}" />
+                                <input type="hidden" name="product" value="{{product.id}}" />
                                 <input class="btn btn-primary pull-right" type="submit" value="Add to cart" /></p>
                         </form>
                     
                     {% if perms.reviews.add_review %}
                     <div class="row" id='review_form'>
-                        <form method="POST" action="{% url 'make_review' ad.id%}">
+                        <form method="POST" action="{% url 'make_review' product.id%}">
                         {% csrf_token %}<span>{{ form }}</span>
                         <input type="submit" value="Submit" />
                     </form>
                         </div>
                         {% endif  %}
                     
-                        {% for review in ad.reviews.all %} 
+                        {% for review in product.reviews.all %} 
                         <div class="row reviews">
                                         <p>{{review.image}} {{review.author}} </p>
                                         <p>{{review.content}}</p>
@@ -50,8 +50,8 @@
                 
                 
             </div>
-            <div class="col-12 col-sm-4"> {% if ad.image %}
-                <img class='product_image' src="{{MEDIA_URL}}{{ ad.image}}"> {% endif %}</div>
+            <div class="col-12 col-sm-4"> {% if product.image %}
+                <img class='product_image' src="{{MEDIA_URL}}{{ product.image}}"> {% endif %}</div>
             </div>
         </div></div>
     </div>

@@ -1,9 +1,9 @@
 from django import forms
-from .models import Ad
+from .models import Product
 
-class AdForm(forms.ModelForm):
+class ProductForm(forms.ModelForm):
     class Meta:
-        model=Ad
+        model=Product
         exclude=['published_date','views','seller']
             
 

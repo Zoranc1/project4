@@ -4,18 +4,18 @@
 {% block content %}
     <div class="container-fluid content">
     <div class="row t">
-    {% for ad in ads %}
+    {% for product in products %}
                     <div class="col-sm-4 col-sm-offset-3 ">
                         <div class="thumbnail">
-                            <img class='img' src="{{MEDIA_URL}}{{ad.image}}" alt="">
+                            <img class='img' src="{{MEDIA_URL}}{{product.image}}" alt="">
                             <div class="caption">
-                                <h4 class="pull-left">{{ad.author}}</h4>
-                                <h4 class="pull-right">{{ad.title}}
+                                <h4 class="pull-left">{{product.author}}</h4>
+                                <h4 class="pull-right">{{product.title}}
                                 </h4>
-                                <p>{{ad.content}}</p>
+                                <p>{{product.content}}</p>
                                 
                                 
-                                <form method="POST" action="{% url 'publish_ad' ad.id %}">
+                                <form method="POST" action="{% url 'publish_product' product.id %}">
                                     {% csrf_token %}
                                     <input type="hidden" name="product" value="{{product.id}}"/>
                                     <input class="btn btn-primary pull-right" type="submit" value="Publishe"/>

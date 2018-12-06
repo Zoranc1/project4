@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404,redirect, HttpResponse
-from adds.models import Ad
+from products.models import Product
 import json
 # Create your views here.
 
@@ -16,14 +16,12 @@ def adding_to_cart(request):
     
     cart = request.session.get('cart',{})
     quantity = int(request.POST['quantity'])
-    product = request.POST['ad']
+    product = request.POST['product']
     
     cart[product]= cart.get(product, 0) + quantity
-    
     request.session['cart'] = cart
-    
-
     return redirect('/')
+
 
 def view_cart(request):
     cart = request.session.get('cart', {})
@@ -31,10 +29,9 @@ def view_cart(request):
     cartTotal=0
     cart_items = []
     for product_id, quantity in cart.items():
-        product = get_object_or_404(Ad, pk=product_id)
+        product = get_object_or_404(Product, pk=product_id)
         item_total=product.price * quantity
         
-    
         cart_items.append({
             'id': product.id,
             'title': product.title,

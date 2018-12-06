@@ -16,8 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from accounts import urls as accounts_urls
-from adds import urls as ads_urls
-from adds.views import home_page
+from products import urls as products_urls
+from products.views import home_page
 from django.conf import settings
 from django.views.static import serve
 from cart import urls as cart_urls
@@ -30,7 +30,7 @@ urlpatterns = [
     path('', home_page, name='home'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/', include(accounts_urls)),
-    path('ads/', include(ads_urls)),
+    path('products/', include(products_urls)),
     path('cart/', include(cart_urls)),
     path('checkout/', include(checkout_urls)),
     path('review/', include(reviews_urls)),
