@@ -24,6 +24,12 @@
 <p>{{line_item.order.postcode}}</p>
 <p>{{line_item.order.country}}</p>
 <h4>Contact phone number is {{line_item.order.phone_number}}</h4>
+
+<form method='POST' action="{% url 'shipped_product' line_item.product.id %}">
+    {% csrf_token %}
+    
+    <input type="submit" value="Ship"/>
+</form>
 </div>
 {% endfor %}
  </div>

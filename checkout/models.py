@@ -12,6 +12,7 @@ class Order(models.Model):
     street_address_2 = models.CharField(max_length=40, blank=False)
     county = models.CharField(max_length=40, blank=False)
     date = models.DateField(auto_now_add=True)
+    shipped = models.BooleanField(default=False)
 
 
     def __str__(self):

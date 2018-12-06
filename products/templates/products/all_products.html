@@ -8,26 +8,26 @@
             <div class="caption">
 
                 <div class="row">
-                    {% for ad in products %}
+                    {% for product in products %}
                     <div class="col-xs-6">
                         <div class="thumbnail">
                             <div class="row">
                                 <div class="col-sm-3 col-md-2 text-center">
-                                    <a class="story-img" href="{% url 'profile' ad.seller.id %}">
-                    <img class="img-circle" src="{{MEDIA_URL}}{{ad.seller.seller.image}}" >
+                                    <a class="story-img" href="{% url 'profile' product.seller.id %}">
+                    <img class="img-circle" src="{{MEDIA_URL}}{{product.seller.seller.image}}" >
                 
-                            <p><span class="boldtext">Author:</span> {{ ad.seller.username }}</p>
+                            <p><span class="boldtext">Author:</span> {{ product.seller.username }}</p>
                         </div></a>
                                     <div class="col-sm-9 col-md-10 text-center">
-                                        <h3>{{ ad.title }}<span class='pull-right'>€{{ad.price}}</span></h4>
-                                            {% if ad.image %}
-                                            <img class='product_image' src="{{MEDIA_URL}}{{ ad.image}}"> {% endif %}
+                                        <h3>{{ product.title }}<span class='pull-right'>€{{product.price}}</span></h4>
+                                            {% if product.image %}
+                                            <img class='product_image' src="{{MEDIA_URL}}{{ product.image}}"> {% endif %}
                                             <div class="row">
                                                 <div class="col-12">
-                                                    <p>{{ ad.content|truncatewords:30 }}</p>
-                                                    <p><a href="{% url 'view_product' ad.id %}" class="btn btn-default pull-right">Read more</a>
-                                                        <span class="boldtext">Views:</span> {{ ad.views}}
-                                                        <span class="boldtext">Find in category:</span>{{ad.category}}</p>
+                                                    <p>{{ product.content|truncatewords:30 }}</p>
+                                                    <p><a href="{% url 'view_product' product.id %}" class="btn btn-default pull-right">Read more</a>
+                                                        <span class="boldtext">Views:</span> {{ product.views}}
+                                                        <span class="boldtext">Find in category:</span>{{product.category}}</p>
                                                 </div>
                                             </div>
 
@@ -45,7 +45,7 @@
 
             <div class="col-sm-2 ">
                 <form action="{% url 'write_product' %}">
-                    <input class="btn btn-primary" type="submit" value="Place ad" />
+                    <input class="btn btn-primary" type="submit" value="Post your ad" />
                 </form>
             </div>
 

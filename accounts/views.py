@@ -20,9 +20,9 @@ def signup_buyer(request):
             raw_password = user_form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
-            seller_group =Group.objects.get(name='buyer')
+            seller_group =Group.objects.get(name='buyers')
             seller_group.user_set.add(user)
-            return redirect('all_ads')
+            return redirect('all_products')
         else:
             return HttpResponse('Something went wrong..... ')
     else:

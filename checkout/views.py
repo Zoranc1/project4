@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404,redirect, HttpResponse
 from products.models import Product
 from .forms import MakePaymentForm, OrderForm
-from .models import OrderLineItem
+from .models import OrderLineItem, Order
 from django.conf import settings
 import stripe
 from django.contrib import messages
@@ -94,7 +94,20 @@ def submit_payment(request):
         
         return redirect('/')
 def my_orders(request):
-    order_line_items = OrderLineItem.objects.filter(product_id__seller=request.user).order_by('order__date')
+    order_line_items = OrderLineItem.objects.filter(product_id__seller=request.user,order__shipped=False).order_by('order__date')
     
     return render (request, 'checkout/my_orders.html',{'order_line_items':order_line_items})
 
+def shipped_product(request,id):
+    order = get_object_or_404(Order, pk=id)
+    order.shipped =True
+    order.save()
+    return redirect('my_orders')
+    
+    
+    
+    
+    
+    
+    
+    
