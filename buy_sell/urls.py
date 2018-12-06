@@ -22,6 +22,7 @@ from django.conf import settings
 from django.views.static import serve
 from cart import urls as cart_urls
 from checkout import urls as checkout_urls
+from reviews import urls as reviews_urls
 
 
 urlpatterns = [
@@ -32,6 +33,7 @@ urlpatterns = [
     path('ads/', include(ads_urls)),
     path('cart/', include(cart_urls)),
     path('checkout/', include(checkout_urls)),
+    path('review/', include(reviews_urls)),
     path('media/<path:path>', serve, {'document_root': settings.MEDIA_ROOT}),
 ]
     

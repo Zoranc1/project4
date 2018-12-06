@@ -1,9 +1,9 @@
 from django.shortcuts import render, get_object_or_404,redirect
 from .models import Ad
 from .forms import AdForm
-from reviews.views import make_review
+
 from reviews.forms import ReviewForm
-from reviews.models import Review
+
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from django.contrib.auth.decorators import permission_required
@@ -18,7 +18,7 @@ def show_all_ads(request):
     return render(request,'ads/all_ads.html',{'ads':ads})
     
 def ad_category(request,category):
-    ads = Ad.objects.filter(category=category)
+    ads = Ad.objects.filter(category=category,published_date__lte=timezone.now())
     
     return render(request,'ads/category.html',{'category':ads})
 
@@ -33,13 +33,14 @@ def user_can_edit_add(request, ad):
     return wrote_the_add or superuser 
 
 def read_ad(request,id):
-    ad = get_object_or_404(Ad, pk=id)
-    ad.views +=1
-    ad.save()
+    product = get_object_or_404(Ad, pk=id)
+    product.views +=1
+    product.save()
+    form=ReviewForm()
     
-    can_edit = user_can_edit_add(request, ad)
+    can_edit = user_can_edit_add(request, product)
 
-    return render(request, "ads/dispey_ad.html",{'ad':ad,'can_edit':can_edit})
+    return render(request, "ads/dispey_ad.html",{'ad':product,'can_edit':can_edit,'form':form})
     
 def edit_ad(request, id):
     post = get_object_or_404(Ad, pk=id)
@@ -56,7 +57,7 @@ def write_ad(request):
     if request.method == "POST":
         form = AdForm(request.POST, request.FILES)
         post=form.save(commit=False)
-        post.author = request.user
+        post.seller = request.user
         post.save()
         return redirect(read_ad, post.id)
     else:        

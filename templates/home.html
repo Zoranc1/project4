@@ -1,17 +1,18 @@
 {% extends 'base.html' %} {% load bootstrap_tags %} {% load staticfiles%} {% block content %}
 <div class="container text-center">
     <div class="row ">
-        <div class="col-sm-8 text-center ">
+        <div class="col-sm-6 col-sm-offset-1 text-center home_content ">
 
             <div class="thumbnail">
 
                 <div class="caption">
-                    <h2>Home</h2>
+                    <h2>Korcula</h2>
+                    <p>Korčula make it the second most populous Adriatic island after Krk and the most populous Croatian island not connected to the mainland by a bridge. Be twin population of 15,522 on Our island are many small producers of local product like excellent wine, Extra virgin olive oil, rewording cheese and many more.</p> <p>This is their stoy.</p>
                 </div>
             </div>
         </div>
 
-        <div class="col-sm-4 text-center">
+        <div class="col-sm-3 text-center">
 
             <div class="thumbnail">
 
@@ -21,11 +22,11 @@
                     {% if perms.adds.add_post %}
 
                     <form action="{% url 'write_ad' %}">
-                        <input class="btn btn-success pull-left" type="submit" value="Place ad" />
+                        <input class="btn btn-success pull-left home_place_ad" type="submit" value="Place ad" />
                     </form>
                     {% endif %}
                     <form action="{% url 'all_ads' %}">
-                        <input class="btn btn-primary pull-right" type="submit" value="SE ALL ADS" />
+                        <input class="btn btn-primary pull-right home_se_ads" type="submit" value="SE ALL ADS" />
                     </form>
                     </div>
 

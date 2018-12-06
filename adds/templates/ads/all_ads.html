@@ -1,49 +1,54 @@
 {% extends 'base.html' %} {% load bootstrap_tags %} {% block content %}
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-8 ">
+        <div class="col-sm-7 col-sm-offset-1 ">
 
-            <div class="thumbnail">
 
-                <div class="caption">
+
+            <div class="caption">
+
+                <div class="row">
                     {% for ad in ads %}
-                    <div class="row">
-                        <div class="col-sm-3 col-md-2 text-center">
-                            <a class="story-img" href="{% url 'profile' ad.seller.id %}">
+                    <div class="col-xs-6">
+                        <div class="thumbnail">
+                            <div class="row">
+                                <div class="col-sm-3 col-md-2 text-center">
+                                    <a class="story-img" href="{% url 'profile' ad.seller.id %}">
                     <img class="img-circle" src="{{MEDIA_URL}}{{ad.seller.seller.image}}" >
                 
                             <p><span class="boldtext">Author:</span> {{ ad.seller.username }}</p>
                         </div></a>
-                        <div class="col-sm-9 col-md-10 text-center">
-                            <h3>{{ ad.title }}<span class='pull-right' >€{{ad.price}}</span></h4>
-                            {% if ad.image %}
-                            <img class='product_image' src="{{MEDIA_URL}}{{ ad.image}}"> {% endif %}
-                            <div class="row">
-                                <div class="col-12">
-                                    <p >{{ ad.content|truncatewords:30 }}</p>
-                                    <p><a href="{% url 'read_ad' ad.id %}" class="btn btn-default pull-right">Read more</a>
-                                    <span class="boldtext">Views:</span> {{ ad.views}}
-                                    <span class="boldtext">Tag:</span> history</p>
+                                    <div class="col-sm-9 col-md-10 text-center">
+                                        <h3>{{ ad.title }}<span class='pull-right'>€{{ad.price}}</span></h4>
+                                            {% if ad.image %}
+                                            <img class='product_image' src="{{MEDIA_URL}}{{ ad.image}}"> {% endif %}
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <p>{{ ad.content|truncatewords:30 }}</p>
+                                                    <p><a href="{% url 'read_ad' ad.id %}" class="btn btn-default pull-right">Read more</a>
+                                                        <span class="boldtext">Views:</span> {{ ad.views}}
+                                                        <span class="boldtext">Find in category:</span>{{ad.category}}</p>
+                                                </div>
+                                            </div>
+
+                                    </div>
                                 </div>
                             </div>
-
-
                         </div>
+
+                      {% endfor %}
+
+
                     </div>
-                    <hr>
-                    {% endfor %}
-
-
                 </div>
             </div>
-        </div>
 
-        <div class="col-sm-2 ">
-            <form action="{% url 'write_ad' %}">
-                <input class="btn btn-primary" type="submit" value="Place ad" />
-            </form>
-        </div>
+            <div class="col-sm-2 ">
+                <form action="{% url 'write_ad' %}">
+                    <input class="btn btn-primary" type="submit" value="Place ad" />
+                </form>
+            </div>
 
+        </div>
     </div>
-</div>
-{% endblock %}
+    {% endblock %}

@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% load bootstrap_tags %} {% block content %}
+{% extends 'base.html' %}{% load static from staticfiles %} {% load bootstrap_tags %} {% block content %}
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-8 ">
@@ -12,38 +12,40 @@
                             <a class="story-img" href="{% url 'profile' ad.seller.id %}">
                     <img class="img-circle" src="{{MEDIA_URL}}{{ad.seller.seller.image}}" >
                 
-                            <p><span class="boldtext">Author:</span> {{ ad.seller.username }}</p>
-                        </div></a>
+                            <p><span class="boldtext">Author:</span> {{ ad.seller.username }}</p></a>
+                        </div>
+
                         <div class="col-sm-9 col-md-10 text-center">
-                            <h3>{{ ad.title }}<span class='pull-right' >€{{ad.price}}</span></h4>
-                            {% if ad.image %}
-                            <img class='product_image' src="{{MEDIA_URL}}{{ ad.image}}"> {% endif %}
+                            <h3>{{ ad.title }}<span class='pull-right'>€{{ad.price}}</span></h3>
                             <div class="row">
-                                <div class="col-12">
-                                    <p >{{ ad.content|truncatewords:30 }}</p>
+                                <div class="col-8" style="display: inline-block">
+                                    <p>{{ ad.content|truncatewords:30 }}</p>
                                     <p><a href="{% url 'read_ad' ad.id %}" class="btn btn-default pull-right">Read more</a>
-                                    <span class="boldtext">Views:</span> {{ ad.views}}
-                                    <span class="boldtext">Tag:</span> history</p>
+                                        <span class="boldtext">Views:</span> {{ ad.views}}
+                                        <span class="boldtext ">Category: </span> {{ad.category}}</p>
+                                </div>
+                                <div class="col-4" style="display: inline-block">
+                                    {% if ad.image %}
+                                    <img class=' category_post_image' src="{{MEDIA_URL}}{{ ad.image}}"> {% endif %}
+
                                 </div>
                             </div>
-
-
                         </div>
-                    </div>
-                    <hr>
-                    {% endfor %}
 
+                    </div>
+                    <hr> {% endfor %}
 
                 </div>
             </div>
         </div>
+
+
 
         <div class="col-sm-2 ">
             <form action="{% url 'write_ad' %}">
                 <input class="btn btn-primary" type="submit" value="Place ad" />
             </form>
         </div>
-
     </div>
 </div>
 {% endblock %}

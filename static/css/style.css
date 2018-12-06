@@ -1,12 +1,19 @@
 
 body{
+    margin: 0;
+    padding: 0;
     font-family: Arial;
     padding-top: 100px;
     background-image: url('/static/images/korcula.jpg');
     background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
     height: 500px;
     
+}
+div.row{
+    margin: 0;
+    padding: 0;
 }
 
 footer {
@@ -17,6 +24,30 @@ footer {
     color: #35393d;
     background:#cdd2d8;
 }
+a{
+    color: #325d88;
+}
+h1{
+    margin-left: 20px;
+}
+#id_content{
+    height: 80px;
+}
+#view_cart_checkout{
+    margin-left: 25px;
+}
+.btn{
+    border:1px solid black;
+    border-radius: 4px;
+}
+.reviews{
+    padding: 10px 0;
+    margin: 0;
+    border: 1px,solid,black;
+    border-radius: 3px;
+    background-color: lightgrey;
+    
+}
 .all_ads{
     float: left;
     padding: 20px 15px;
@@ -26,15 +57,46 @@ footer {
     color:white;
 }
 .category_image{
-    height:100%;
-    width:100vh;
+    margin: 25px;
+    height:8% !important;
+    margin-bottom:15px; 
+    border:2px solid  black;
+}
+.category_post_image{
+    width: 250px;
+    border:2px solid black;
+}
+.home_content{
+    padding-left: 3rem;
+}
+.login{
+    background-color: #f8f5f0c9;
+    padding-bottom: 15px;
+    border:2px solid black;
+    border-radius: 5px;
 }
 .container-fluid{
     width:100%;
 }
+.content{
+    min-height: 59vh;
+}
+.my_order{
+    text-align: center;
+    background-color:#f8f5f0c9;
+    padding-left: 25px;
+    padding-right: 25px;
+    margin: 10px auto;
+    width: 100%;
+    font-size: 2.6rem;
+}
+.checkout{
+    background-color: #f8f5f0c9;
+}
 .row{
-    margin-left:20px;
+    margin-left:0px;
     padding-left:20px;
+    
 }
 .base{
     margin: 0;
@@ -54,11 +116,35 @@ footer {
 .navbar-default:hover{
     color:blue ;
 }
+#navbar-brand{
+    margin-left: 25px;
+    font-size: 25px;
+    font-family: sans-serif;
+    float: left;
+    padding: 20px 15px;
+    line-height: 20px;
+    height: 60px;
+    color:#fcfcfc;
+    text-decoration: none;
+}
 .icon-bar {
     background-color: #fff;
 }
 .product_image{
-    width: 100px;
+    width: 100%;
+    max-width: 300px;
+    border:2px solid black;
+}
+legend{
+    margin-left:20px;
+}
+th ,td {
+    border-top:2px solid black;
+    border-bottom:2px solid black;
+}
+.table{
+    background-color: lightgrey;
+    margin-left: 25px;
 }
 .accountform {
     padding-top: 20px;
@@ -78,13 +164,31 @@ footer {
 .img:hover{
     
 }
+.thumbnail{
+    color: black;
+    font-size: 1.2em;
+    font-weight: 500;
+    background-color: #f8f5f0c9;
+    border:2px solid black; 
+    min-height: 500px
+}
+.hr_all_ads{
+    color:black;
+    margin-bottom: 10px;
+}
 
 
 .navbar-default .navbar-nav>li>a {
     color: orange;
+    margin-left: 20px;
+    font-size: 1.5rem;
 }
 @media (min-width: 992px){
   .container-fluid{
     max-width:100%;
   }
 }
+@media (min-width: 1200px){
+ .container {
+    width: 100%;
+}}

@@ -2,16 +2,18 @@
 {% load static from staticfiles %}
 
 {% block content %}
-    
-    <div class="col-sm-6 offset-sm-1 text-center">
+    <div class="row">
+    <div class="col-sm-6 col-sm-offset-1 text-center">
+        <div class="thumbnail">
         <a class="story-img" href="">
                     <img  class="img-circle" src="{{MEDIA_URL}}{{seller.seller.image}}" >
                 </a>
         <p><span class="boldtext">Seller:</span> {{ seller.username }}</p>
         <p>{{seller.about}}</p>
-        <p>Order thru list of Our Products or contact us on {{seller.email}}</p>
-    </div>
-    <div class="col-sm-4 ">
+        <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. or contact us on {{seller.email}}</p>
+    </div></div>
+    <div class="col-sm-4 text-center">
+        <div class="thumbnail">
         
             {% for ad in ads%}
             <div class="row">
@@ -23,5 +25,5 @@
                 <p><a href="{% url 'read_ad' ad.id %}" class="btn btn-default pull-right">Read more</a>
             {% endfor%}
             
-        </div>
+        </div></div></div>
 {% endblock %}
