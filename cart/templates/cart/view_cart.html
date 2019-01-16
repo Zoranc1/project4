@@ -1,10 +1,9 @@
 {% extends 'base.html' %} {% load bootstrap_tags %} {% block content %}
 <div class="container content">
     <div class="row ">
+        {% if items_in_cart > 0 %}
         <div class="col-sm-8 col-sm-offset-1 ">
-            {% if items_in_cart > 0 %}
-
-            <table class="table">
+              <table class="table">
                 <thead>
                     <tr>
                         <th></th>
@@ -45,13 +44,15 @@
                 </tbody>
             </table>
 
-            <a href="{% url 'show_checkout'%}" class="btn btn-success" id='view_cart_checkout' role="button">Checkout</a> {% else %}
+            <a href="{% url 'show_checkout'%}" class="btn btn-success" id='view_cart_checkout' role="button">Checkout</a></div>
+            {% else %}
+            <div class="col-sm-4 col-sm-offset-4 ">
 
-            <p>Your Cart is empty</p>
-
+            <p class='no_unpublished'>Your Cart is empty</p>
+            </div>
             {% endif %}
 
-        </div>
+        
     </div>
 </div>
 {% endblock %}

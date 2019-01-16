@@ -52,7 +52,7 @@ def write_product(request):
         return redirect(view_product, product.id)
     else:        
         form=ProductForm()
-        return render(request, "products/add_product.html", {'form': form }) 
+        return render(request, "products/ad_product.html", {'form': form }) 
         
 
 

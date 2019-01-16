@@ -11,5 +11,5 @@ class Review(models.Model):
     created_date = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
-        return self.title
+        return '{0} {1}'.format(self.author.first_name,self.author.last_name)
         

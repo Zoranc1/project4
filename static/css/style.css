@@ -36,6 +36,9 @@ h1{
 #view_cart_checkout{
     margin-left: 25px;
 }
+.read_more{
+    margin-bottom: 4rem;
+}
 .btn{
     border:1px solid black;
     border-radius: 4px;
@@ -59,7 +62,6 @@ h1{
 .category_image{
     margin: 25px;
     height:8% !important;
-    margin-bottom:15px; 
     border:2px solid  black;
 }
 .category_post_image{
@@ -130,9 +132,19 @@ h1{
 .icon-bar {
     background-color: #fff;
 }
+.no_unpublished{
+    text-align: center;
+    font-size: 2rem;
+    padding:1rem;
+    margin:15px auto;
+    background-color: lightgreen;
+    border:1px solid black;
+    border-radius: 5px;
+}
 .product_image{
     width: 100%;
     max-width: 300px;
+    margin-top: 1rem;
     border:2px solid black;
 }
 legend{

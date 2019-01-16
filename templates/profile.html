@@ -20,9 +20,9 @@
                 <img class='product_image'  src="{{MEDIA_URL}}{{ product.image}}">
             </div>
             <h3>{{ product.title }} <span class='pull-right' >€{{product.price}}</span></h3>
-            <p><span class="boldtext">Views:</span> {{ product.views}}
-                <span class="boldtext">Category:</span> {{product.category}}</p>
-                <p><a href="{% url 'view_product' product.id %}" class="btn btn-default pull-right">Read more</a>
+            <p class='read_more'><span class="boldtext">Views: </span> {{ product.views}}
+                <span class="boldtext">Category:</span> {{product.category}}
+                <a href="{% url 'view_product' product.id %}" class="btn btn-default pull-right">Read more</a>
             {% endfor%}
             
         </div></div></div>
