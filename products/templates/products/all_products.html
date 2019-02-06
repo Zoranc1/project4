@@ -16,8 +16,8 @@
                                     <a class="story-img" href="{% url 'profile' product.seller.id %}">
                     <img class="img-circle" src="{{MEDIA_URL}}{{product.seller.seller.image}}" >
                 
-                            <p><span class="boldtext">Author:</span> {{ product.seller.username }}</p>
-                        </div></a>
+                            <p><span class="boldtext">Author:</span> {{ product.seller.username }}</p></a>
+                        </div>
                                     <div class="col-sm-9 col-md-10 text-center">
                                         <h3>{{ product.title }}<span class='pull-right'>€{{product.price}}</span></h4>
                                             {% if product.image %}
@@ -26,8 +26,8 @@
                                                 <div class="col-12">
                                                     <p>{{ product.content|truncatewords:30 }}</p>
                                                     <p><a href="{% url 'view_product' product.id %}" class="btn btn-default pull-right">Read more</a>
-                                                        <span class="boldtext">Views:</span> {{ product.views}}
-                                                        <span class="boldtext">Find in category:</span>{{product.category}}</p>
+                                                        <span class="boldtext pull-left">Find in category:{{product.category}}</span>
+                                                        <span class="boldtext small">Views: {{ product.views}}</p></span>
                                                 </div>
                                             </div>
 

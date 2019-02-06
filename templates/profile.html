@@ -13,17 +13,21 @@
         <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. or contact us on {{seller.email}}</p>
     </div></div>
     <div class="col-sm-4 text-center">
-        <div class="thumbnail">
+        <div class="row">
         
             {% for product in products%}
-            <div class="row">
+            
+            
+                <div class="col-xs-6">
+                    <div class="thumbnail"><div class="row">
                 <img class='product_image'  src="{{MEDIA_URL}}{{ product.image}}">
-            </div>
+            
             <h3>{{ product.title }} <span class='pull-right' >€{{product.price}}</span></h3>
-            <p class='read_more'><span class="boldtext">Views: </span> {{ product.views}}
-                <span class="boldtext">Category:</span> {{product.category}}
-                <a href="{% url 'view_product' product.id %}" class="btn btn-default pull-right">Read more</a>
+            <p class='read_more'><a href="{% url 'view_product' product.id %}" class="btn btn-default pull-right">Read more</a>
+            <span class="boldtext product_views pull-right">Views:  {{ product.views}}</span>
+                <span class="boldtext pull-left">Category: {{product.category}}</span>
+                </div></div></div>
             {% endfor%}
             
-        </div></div></div>
+        </div></div>
 {% endblock %}

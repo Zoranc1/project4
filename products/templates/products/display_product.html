@@ -21,14 +21,15 @@
                         <img class='img' src="{{MEDIA_URL}}{{ i.image}}"> {% endfor %}
 
                     
-                        <p><span class="boldtext">Views:</span> {{ product.views}}
-                            <span class="boldtext">Category:</span> {{product.category}}
-                            <form method="POST" action="{% url 'adding_to_cart' %}">
+                        <p><span class="boldtext product_views pull-right">Views: {{ product.views}}</span>
+                            <span class="boldtext">Category: {{product.category}}</span></p>
+                            
+                           <p> <form class='form_disp' method="POST" action="{% url 'adding_to_cart' %}">
                                 {% csrf_token %}
-                                <input type="number" name="quantity" value="1" />
+                                <input class='quantity_number' type="number" name="quantity" value="1" />
                                 <input type="hidden" name="product" value="{{product.id}}" />
-                                <input class="btn btn-primary pull-right" type="submit" value="Add to cart" /></p>
-                        </form>
+                                <input class="btn btn-primary pull-right" type="submit" value="Add to cart" />
+                        </form></p>
                     
                     {% if perms.reviews.add_review %}
                     <div class="row" id='review_form'>
@@ -40,9 +41,10 @@
                         {% endif  %}
                     
                         {% for review in product.reviews.all %} 
-                        <div class="row reviews">
-                                        <p>{{review.image}} {{review.author}} </p>
-                                        <p>{{review.content}}</p>
+                        <div class="row" id="reviews">
+                                       <p> <span >{{review.author}} </span><span class='crtd_date pull-right' >{{review.created_date}} </span></p>
+                                        
+                                        <span>{{review.content}}</span>
                          </div>
                                         {% endfor%}
                     </div></div>

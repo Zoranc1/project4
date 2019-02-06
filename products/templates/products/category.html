@@ -6,26 +6,27 @@
             <div class="thumbnail">
 
                 <div class="caption">
-                    {% for ad in category %}
+                    {% for product in category %}
                     <div class="row">
                         <div class="col-sm-3 col-md-2 text-center">
-                            <a class="story-img" href="{% url 'profile' ad.seller.id %}">
-                    <img class="img-circle" src="{{MEDIA_URL}}{{ad.seller.seller.image}}" >
+                            <a class="story-img" href="{% url 'profile' product.seller.id %}">
+                    <img class="img-circle" src="{{MEDIA_URL}}{{product.seller.seller.image}}" >
                 
-                            <p><span class="boldtext">Author:</span> {{ ad.seller.username }}</p></a>
+                            <p><span class="boldtext">Author:</span> {{ product.seller.username }}</p></a>
                         </div>
 
                         <div class="col-sm-9 col-md-10 text-center">
-                            <h3>{{ ad.title }}<span class='pull-right'>€{{ad.price}}</span></h3>
+                            <h3>{{ product.title }}<span class='pull-right'>€{{product.price}}</span></h3>
                             <div class="row">
                                 <div class="col-8" style="display: inline-block">
-                                    <p>{{ ad.content|truncatewords:30 }}</p>
-                                        <span class="boldtext">Views:</span> {{ ad.views}}
-                                        <span class="boldtext ">Category: </span> {{ad.category}}</p>
+                                    <p>{{ product.content|truncatewords:30 }}</p>
+                                        <p><a href="{% url 'view_product' product.id %}" class="btn btn-default pull-right">Read more</a>
+                                                        <span class="boldtext pull-left">Find in category:{{product.category}}</span>
+                                                        <span class="boldtext small pull-right">Views: {{ product.views}}</p></span>
                                 </div>
                                 <div class="col-4" style="display: inline-block">
-                                    {% if ad.image %}
-                                    <img class=' category_post_image' src="{{MEDIA_URL}}{{ ad.image}}"> {% endif %}
+                                    {% if product.image %}
+                                    <img class=' category_post_image' src="{{MEDIA_URL}}{{ product.image}}"> {% endif %}
 
                                 </div>
                             </div>

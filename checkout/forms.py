@@ -17,4 +17,4 @@ class OrderForm(forms.ModelForm):
     
     class Meta:
         model = Order
-        exclude=['shipped']         
+        exclude=['shipped','emailed']         

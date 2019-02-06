@@ -3,6 +3,7 @@ from products.models import Product
 from .forms import MakePaymentForm, OrderForm
 from .models import OrderLineItem, Order
 from django.conf import settings
+from django.core.mail import send_mail
 import stripe
 from django.contrib import messages
 
@@ -84,6 +85,18 @@ def submit_payment(request):
             messages.error(request, "Your card was declined!")
 
         if customer.paid:
+            orders = OrderLineItem.objects.filter(product_id__seller=request.user,order__emailed=False)
+            for order in orders:
+                to_email = order.product.seller.email
+                send_mail(
+                'Subject here',
+                'Here is the message.',
+                'ourisland47@gmail.com',
+                [to_email],
+                fail_silently=False,)
+                order.order.emailed = True
+                order.order.save()
+                
             print("Paid")
             messages.error(request, "You have successfully paid")
             
